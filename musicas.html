@@ -1,61 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player de música</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <audio onclick="duracao()" id="player" preload autoplay controls>
-        <source id="player-source" type="audio/mpeg" src="Ancient.mp3">      
-    </audio>
-    <button id="next">next</button>
-    <button id="back">back</button>
-
-    <script type="text/javascript">
-        var nextElement = document.querySelector('#next');
-        var backElement = document.querySelector('#back');
-        var audio = document.querySelector("#player");
-
-        /*diretorio = "../resources/cariboost_files/";*/
-        musicas = ["Ancient", "Arkansas_Traveler"];
-        musicaAtual = 1;   
-
-        var contagem = musicas.length;
-
-        nextElement.addEventListener("click", function (e){
-            if (musicaAtual == contagem) {
-                musicaAtual = 0;
-            } else if (audio.ended) {
-                
-            }
+    <div id="player">
+        <div class="card">
+            <div class="card-image">
+                <a href="#" class="btn-floating btn-large halfway-fab">
+                    <i class="material-icons" id="play-pause">play_arrow</i>
+                </a>
+            </div>
             
-            next();
-            musicaAtual ++;
-        });
+            <div class="card-content">
+                <h5>Title</h5>
+                <p class="artist">Artist</p>
 
-        backElement.addEventListener("click", function (e){
-            if (musicaAtual == 0) {
-                musicaAtual = 1;
-            } else {
-                musicaAtual = musicaAtual - 1;    
-            }   
+                <div class="row valign-wrapper">
+                    <div class="col s2" id="current-duration">00:00</div>
+                    <div class="col s6 range-field valign-wrapper">
+                        <input type="range" min="0" max="0" id="seekbar" step="1">
+                    </div>
+                    <div class="col s2" id="total-duration">00:00</div>
+                </div>
 
-            back();
-        });
+                <div>
+                    <a href="#">
+                        <i class="material-icons" id="mute">volume_up</i>
+                    </a>
+                </div>
 
-        function duracao() {
-            // :duracao = audio.duration;
-            alert(audio.duration);
-        }
-
-        function next() {
-            document.getElementById("player-source").setAttribute("src", musicas[musicaAtual]+".mp3");
-            document.getElementById("player").load();
-        };
-
-        function back() {
-            document.getElementById("player-source").setAttribute("src", musicas[musicaAtual]+".mp3");
-            document.getElementById("player").load();
-        };
-    </script>
+                <div class="col s2 range-field valign-wrapper"> 
+                    <input type="range" id="vol-control" min="0" max="100" step="1">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/index.js" type="module"></script>
 </body>
 </html>
